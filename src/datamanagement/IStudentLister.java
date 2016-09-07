@@ -5,8 +5,13 @@ package datamanagement;
  */
 
 public interface IStudentLister {
+    /**
+     * call method ClearStudents return nothing.
+     */
+     void clearStudents();
 
-    public void clearStudents();
-
-    public void addStudent(IStudent student);
+    /**
+     * @param student **IStudent**
+     */
+     void addStudent(IStudent student);
 }
