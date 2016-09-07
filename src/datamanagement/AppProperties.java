@@ -11,7 +11,7 @@ public  final class AppProperties {
     /**  set the static value of AppProperties null.  */
     private static AppProperties self = null;
     /**
-     *
+     * import class properties.
      */
     private Properties properties;
 
