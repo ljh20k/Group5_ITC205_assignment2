@@ -1,56 +1,97 @@
 package datamanagement;
 
+/**
+ * Domain Class.
+ */
 public class Student implements IStudent {
+    /**
+     * Integer type studentId.
+     */
     private Integer id;
+    /**
+     * String type firstName.
+     */
     private String fn;
+    /**
+     * String type lastName.
+     */
     private String ln;
+    /**
+     * List<IStudetnUnitRecord>.
+     */
     private StudentUnitRecordList su;
 
-
-    public Student(Integer id, String fn, String ln, StudentUnitRecordList su) {
+    /**
+     * @param id ** studentId **
+     * @param fn ** student's firstName **
+     * @param ln ** student's lastName **
+     * @param su ** IStudentUnitRecordList **
+     */
+    public Student(final Integer id, final String fn, final String ln, final StudentUnitRecordList su) {
         this.id = id;
         this.fn = fn;
         this.ln = ln;
         this.su =
-                su == null ? new StudentUnitRecordList() :
-                        su;
+                su == null ? new StudentUnitRecordList() : su;
     }
 
-    public Integer getID() {
+    /**
+     * @return id.
+     */
+    public final Integer getID() {
         return this.id;
     }
-
-    public String getFirstName() {
+    /**
+     * @return fn.
+     */
+    public final String getFirstName() {
         return fn;
     }
 
-    public void setFirstName(String firstName) {
+    /**
+     * @param firstName firstName
+     */
+    public final void setFirstName(final String firstName) {
         this.fn = firstName;
     }
 
-    public String getLastName() {
+    /**
+     * @return lastName
+     */
+    public final String getLastName() {
         return ln;
     }
 
-    public void setLastName(String lastName) {
-
-
+    /**
+     * @param lastName lastName
+     */
+    public final void setLastName(final String lastName) {
         this.ln = lastName;
     }
 
-    public void addUnitRecord(IStudentUnitRecord record) {
+    /**
+     * @param record the record
+     */
+    public final void addUnitRecord(final IStudentUnitRecord record) {
         su.add(record);
     }
 
-    public IStudentUnitRecord getUnitRecord(String unitCode) {
-        for (IStudentUnitRecord r : su)
-            if (r.getUnitCode().equals(unitCode))
+    /**
+     * @param unitCode unitCode
+     * @return IStudentUnitRecord if @param UnitCode equals to IStudentUnitRecord.getUnitCode()
+     */
+    public IStudentUnitRecord getUnitRecord(final String unitCode) {
+        for (IStudentUnitRecord r : su) {
+            if (r.getUnitCode().equals(unitCode)) {
                 return r;
-
+            }
+        }
         return null;
-
     }
 
+    /**
+     * @return unitRecordList
+     */
     public StudentUnitRecordList getUnitRecords() {
         return su;
     }
