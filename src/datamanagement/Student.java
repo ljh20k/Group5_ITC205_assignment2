@@ -6,6 +6,7 @@ public class Student implements IStudent {
     private String ln;
     private StudentUnitRecordList su;
 
+
     public Student(Integer id, String fn, String ln, StudentUnitRecordList su) {
         this.id = id;
         this.fn = fn;
