@@ -1,15 +1,35 @@
+/**
+ * Domain classes used to produce studentList and grade.
+ *
+ * @since 1.0
+ * @author somebody
+ * @version 1.0
+ */
 package datamanagement;
 
+/**
+ * Class ListStudentsCTL.
+ */
 public class ListStudentsCTL {
+    /**
+     *Import StudentManager Class for get/set domain student.
+     */
     private StudentManager sm;
-
+    /**
+     *
+     */
     public ListStudentsCTL() {
         sm = StudentManager.get();
     }
-
-    public void listStudents(IStudentLister lister, String unitCode) {
+    /**
+     * @param lister **IStudentLister**
+     * @param unitCode The unitCode
+     */
+    public final void listStudents(final IStudentLister lister, final String unitCode) {
         lister.clearStudents();
         StudentMap students = sm.getStudentsByUnit(unitCode);
-        for (Integer id : students.keySet()) lister.addStudent(students.get(id));
+        for (Integer id : students.keySet()) {
+            lister.addStudent(students.get(id));
+        }
     }
 }
