@@ -7,19 +7,19 @@ public class Student implements IStudent {
     /**
      * Integer type studentId.
      */
-    private Integer id;
+    private Integer studentId;
     /**
      * String type firstName.
      */
-    private String fn;
+    private String firstName;
     /**
      * String type lastName.
      */
-    private String ln;
+    private String lastName;
     /**
-     * List<IStudetnUnitRecord>.
+     * List<IStudentUnitRecord>.
      */
-    private StudentUnitRecordList su;
+    private StudentUnitRecordList studentUnitRecordList;
 
     /**
      * @param id ** studentId **
@@ -28,60 +28,61 @@ public class Student implements IStudent {
      * @param su ** IStudentUnitRecordList **
      */
     public Student(final Integer id, final String fn, final String ln, final StudentUnitRecordList su) {
-        this.id = id;
-        this.fn = fn;
-        this.ln = ln;
-        this.su =
-                su == null ? new StudentUnitRecordList() : su;
+        this.studentId = id;
+        this.firstName = fn;
+        this.lastName = ln;
+        if (su != null) {
+            this.studentUnitRecordList = su;
+        }
     }
 
     /**
-     * @return id.
+     * @return studentId.
      */
     public final Integer getID() {
-        return this.id;
+        return this.studentId;
     }
     /**
-     * @return fn.
+     * @return firstName.
      */
     public final String getFirstName() {
-        return fn;
+        return firstName;
     }
 
     /**
-     * @param firstName firstName
+     * @param fn new firstName
      */
-    public final void setFirstName(final String firstName) {
-        this.fn = firstName;
+    public final void setFirstName(final String fn) {
+        this.firstName = fn;
     }
 
     /**
      * @return lastName
      */
     public final String getLastName() {
-        return ln;
+        return lastName;
     }
 
     /**
-     * @param lastName lastName
+     * @param ln new lastName
      */
-    public final void setLastName(final String lastName) {
-        this.ln = lastName;
+    public final void setLastName(final String ln) {
+        this.lastName = ln;
     }
 
     /**
-     * @param record the record
+     * @param record new the record
      */
     public final void addUnitRecord(final IStudentUnitRecord record) {
-        su.add(record);
+        studentUnitRecordList.add(record);
     }
 
     /**
-     * @param unitCode unitCode
-     * @return IStudentUnitRecord if @param UnitCode equals to IStudentUnitRecord.getUnitCode().
+     * @param unitCode new unitCode
+     * @return IStudentUnitRecord which matches with given String unitCode
      */
     public final IStudentUnitRecord getUnitRecord(final String unitCode) {
-        for (IStudentUnitRecord r : su) {
+        for (IStudentUnitRecord r : studentUnitRecordList) {
             if (r.getUnitCode().equals(unitCode)) {
                 return r;
             }
@@ -90,9 +91,9 @@ public class Student implements IStudent {
     }
 
     /**
-     * @return unitRecordList
+     * @return studentUnitRecordList
      */
     public final StudentUnitRecordList getUnitRecords() {
-        return su;
+        return studentUnitRecordList;
     }
 }
