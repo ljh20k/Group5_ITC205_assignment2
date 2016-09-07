@@ -1,44 +1,68 @@
 package datamanagement;
 
 public interface IUnit {
+    /**
+     * @return unit code as string.
+     */
+    String getUnitCode();
 
-    public String getUnitCode();
+    /**
+     * @return unit name as string.
+     */
+    String getUnitName();
 
-    public String getUnitName();
+    /**
+     * @return parameter cutoff  as float.
+     */
+    float getPsCutoff();
 
-    public float getPsCutoff();
+    /**
+     *
+     * @param cutoff is a float
+     */
+    void setPsCutoff1(float cutoff);
 
-    public void setPsCutoff1(float cutoff);
+    /**
+     *
+     * @return
+     */
+    float getCrCutoff();
 
-    public float getCrCutoff();
+    /**
+     *
+     * @param cutoff
+     */
+    void setCrCutoff(float cutoff);
 
-    public void setCrCutoff(float cutoff);
+    /**
+     *
+     * @return
+     */
+    float getDiCuttoff();
 
-    public float getDiCuttoff();
+    void setDiCutoff(float cutoff);
 
-    public void setDiCutoff(float cutoff);
+    float getHdCutoff();
 
-    public float getHdCutoff();
+    void setHdCutoff(float cutoff);
 
-    public void setHdCutoff(float cutoff);
+    float getAeCutoff();
 
-    public float getAeCutoff();
+    void setAeCutoff(float cutoff);
 
-    public void setAeCutoff(float cutoff);
+    int getAsg1Weight();
 
-    public int getAsg1Weight();
+    int getAsg2Weight();
 
-    public int getAsg2Weight();
+    int getExamWeight();
 
-    public int getExamWeight();
+    void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
 
-    public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
+    String getGrade(float asg1, float asg2, float exam);
 
-    public String getGrade(float asg1, float asg2, float exam);
+    void addStudentRecord(IStudentUnitRecord record);
 
-    public void addStudentRecord(IStudentUnitRecord record);
+    IStudentUnitRecord getStudentRecord(int studentID);
 
-    public IStudentUnitRecord getStudentRecord(int studentID);
-
-    public StudentUnitRecordList listStudentRecords();
+    StudentUnitRecordList listStudentRecords();
 }
