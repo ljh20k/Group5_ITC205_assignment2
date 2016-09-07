@@ -27,7 +27,7 @@ public  final class AppProperties {
     }
 
     /**
-     * set up a memory for property to read property file.
+     * set up a memory for property for  reading property file.
      */
     private AppProperties() {
         properties = new Properties();
