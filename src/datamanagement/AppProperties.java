@@ -27,7 +27,7 @@ public  final class AppProperties {
     }
 
     /**
-     * import AppProperties class to create new object.
+     * import AppProperties class to create new properties and load.
      */
     private AppProperties() {
         properties = new Properties();
