@@ -78,9 +78,9 @@ public class Student implements IStudent {
 
     /**
      * @param unitCode unitCode
-     * @return IStudentUnitRecord if @param UnitCode equals to IStudentUnitRecord.getUnitCode()
+     * @return IStudentUnitRecord if @param UnitCode equals to IStudentUnitRecord.getUnitCode().
      */
-    public IStudentUnitRecord getUnitRecord(final String unitCode) {
+    public final IStudentUnitRecord getUnitRecord(final String unitCode) {
         for (IStudentUnitRecord r : su) {
             if (r.getUnitCode().equals(unitCode)) {
                 return r;
@@ -92,7 +92,7 @@ public class Student implements IStudent {
     /**
      * @return unitRecordList
      */
-    public StudentUnitRecordList getUnitRecords() {
+    public final StudentUnitRecordList getUnitRecords() {
         return su;
     }
 }
