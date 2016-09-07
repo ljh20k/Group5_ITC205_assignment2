@@ -1,7 +1,7 @@
 package datamanagement;
 
 /**
- * s IStudentUnitRecord as an declared as an Interface.
+ * IStudentUnitRecord as an declared as an Interface.
  */
 public interface IStudentUnitRecord {
     /**
