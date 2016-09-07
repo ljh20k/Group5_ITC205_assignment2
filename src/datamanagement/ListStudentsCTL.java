@@ -16,7 +16,7 @@ public class ListStudentsCTL {
      */
     private StudentManager sm;
     /**
-     *
+     *StudentManager.get() returns itself
      */
     public ListStudentsCTL() {
         sm = StudentManager.get();

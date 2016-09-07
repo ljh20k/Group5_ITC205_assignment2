@@ -1,16 +1,17 @@
-/**
- * These classes used to produce .....\
- */
 package datamanagement;
 
 /**
  * Main Class.
  */
-public class Main {
-
+public final class Main {
+    /**
+     * Constructor.
+     */
+    private Main() {
+    }
 
     /**
-     * @param p
+     * @param p is String args for Main method.
      */
     public static void main(final String[] p) {
         new cgCTL().execute();
