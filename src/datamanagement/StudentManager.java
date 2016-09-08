@@ -1,82 +1,114 @@
 package datamanagement;
 
-import org.jdom.*;
-
+import org.jdom.Element;
 import java.util.List;
 
-public class StudentManager {
-    private static StudentManager self = null;
-
-
-    private StudentMap sm;
+/**
+ * Class StudentManager.
+ * used to handle student data and table
+ */
+public final class StudentManager {
+    /**
+     * Prepare to import StudentManager.
+     */
+    private static StudentManager self;
+    /**
+     * StudentMap = HashMap<String, IStudentUnitRecord>.
+     */
+    private StudentMap studentMap;
+    /**
+     * Import HashMap.
+     */
     private java.util.HashMap<String, StudentMap> um;
 
+    /**
+     * @return StudentManager
+     * StudentManager self = new StudentManager();
+     */
     public static StudentManager get() {
-        if (self == null)
-
-            self = new StudentManager();
+        self = new StudentManager();
         return self;
     }
 
+    /**
+     * Generating HashMaps.
+     */
     private StudentManager() {
 
-
-        sm = new StudentMap();
+        studentMap = new StudentMap();
         um = new java.util.HashMap<>();
     }
 
-    public IStudent getStudent(Integer id) {
-        IStudent is = sm.get(id);
-        return is != null ? is : createStudent(id);
+    /**
+     * @param id studentId.
+     * @return is != null ? is : createStudent(id);
+     */
+    public IStudent getStudent(final Integer id) {
+        IStudent is = studentMap.get(id);
+        if (is != null) {
+            return is;
+        }
+        return createStudent(id);
     }
 
-    private Element getStudentElement(Integer id) {
-        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentTable").getChildren("student"))
-            if (id.toString().equals(el.getAttributeValue("sid")))
+    /**
+     * @param id studentId.
+     * @return el Element.
+     */
+    private Element getStudentElement(final Integer id) {
+        for (Element el : (List<Element>) XMLManager.getXML().getDocument().getRootElement().getChild("studentTable").getChildren("student")) {
+            if (id.toString().equals(el.getAttributeValue("sid"))) {
                 return el;
+            }
+        }
         return null;
     }
 
-    private IStudent createStudent(Integer id) {
+    /**
+     * @param id studentId.
+     * @return IStudent
+     */
+    private IStudent createStudent(final Integer id) {
         IStudent is;
         Element el = getStudentElement(id);
         if (el != null) {
             StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(id);
             is = new Student(new Integer(el.getAttributeValue("sid")), el.getAttributeValue("fname"), el.getAttributeValue("lname"), rlist);
-
-
-            sm.put(is.getID(), is);
+            studentMap.put(is.getID(), is);
             return is;
         }
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
 
-    private IStudent createStudentProxy(Integer id) {
+    /**
+     * @param id id.
+     * @return IStudent.
+     */
+    private IStudent createStudentProxy(final Integer id) {
         Element el = getStudentElement(id);
-
-
-        if (el != null) return new StudentProxy(id, el.getAttributeValue("fname"), el.getAttributeValue("lname"));
+        if (el != null) {
+            return new StudentProxy(id, el.getAttributeValue("fname"), el.getAttributeValue("lname"));
+        }
         throw new RuntimeException("DBMD: createStudent : student not in file");
     }
 
-    public StudentMap getStudentsByUnit(String uc) {
-        StudentMap s = um.get(uc);
-        if (s != null) {
-
-
-            return s;
+    /**
+     * @param uc uc.
+     * @return StudentMap s
+     */
+    public StudentMap getStudentsByUnit(final String uc) {
+        StudentMap sm = um.get(uc);
+        if (sm != null) {
+            return sm;
         }
-
-        s = new StudentMap();
+        sm = new StudentMap();
         IStudent is;
         StudentUnitRecordList ur = StudentUnitRecordManager.instance().getRecordsByUnit(uc);
-        for (IStudentUnitRecord S : ur) {
-
-
-            is = createStudentProxy(new Integer(S.getStudentID()));
-            s.put(is.getID(), is);
+        for (IStudentUnitRecord studentUnitRecord : ur) {
+            is = createStudentProxy(new Integer(studentUnitRecord.getStudentID()));
+            sm.put(is.getID(), is);
         }
-        um.put(uc, s);
-        return s;
+        um.put(uc, sm);
+        return sm;
     }
 }
