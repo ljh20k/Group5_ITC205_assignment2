@@ -55,7 +55,7 @@ public class Unit implements IUnit {
         this.co4 = cutoff;
     }
 
-    public float getDiCuttoff() {
+    public float getDiCutoff() {
         return this.co4;
     }
 

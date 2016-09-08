@@ -41,8 +41,8 @@ public class UnitProxy implements IUnit {
         um.getUnit(UC).setDiCutoff(cutoff);
     }
 
-    public float getDiCuttoff() {
-        return um.getUnit(UC).getDiCuttoff();
+    public float getDiCutoff() {
+        return um.getUnit(UC).getDiCutoff();
     }
 
     public void setHdCutoff(float cutoff) {
