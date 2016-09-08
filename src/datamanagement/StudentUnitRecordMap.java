@@ -1,8 +1,7 @@
 package datamanagement;
-
 /**
- * StudentUnitRecordMap extends HashMap.
- * Works exactly same as HashMap.
+ * extend StudentUnitRecordMap as String in HashMap.
  */
-public class StudentUnitRecordMap extends java.util.HashMap<String, IStudentUnitRecord> {
+public class StudentUnitRecordMap extends
+        java.util.HashMap<String, IStudentUnitRecord> {
 }
