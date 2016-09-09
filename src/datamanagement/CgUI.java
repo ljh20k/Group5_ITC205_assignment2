@@ -429,6 +429,10 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
                 + student.getFirstName() + " " + student.getLastName());
     }
 
+    /**
+     * implement the set method for the boolean var1.
+     * @param b boolean
+     */
     public final void setState2(final boolean b) {
         jComboBox2.setEnabled(b);
         jlabel6.setText("");
