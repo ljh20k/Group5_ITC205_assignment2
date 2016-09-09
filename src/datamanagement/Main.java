@@ -14,6 +14,6 @@ public final class Main {
      * @param p is String args for Main method.
      */
     public static void main(final String[] p) {
-        new cgCTL().execute();
+        new CgCTL().execute();
     }
 }
