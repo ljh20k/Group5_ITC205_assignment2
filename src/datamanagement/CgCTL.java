@@ -121,8 +121,6 @@ public class CgCTL {
      * @param exam Exam
      */
     public final void saveGrade(final float asg1, final float asg2, final float exam) {
-
-        IUnit u = UnitManager.getUnitManager().getUnit(cuc);
         IStudent s = StudentManager.get().getStudent(currentStudentID);
 
         IStudentUnitRecord r = s.getUnitRecord(cuc);
