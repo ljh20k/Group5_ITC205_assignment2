@@ -1,137 +1,176 @@
 package datamanagement;
 
+/**
+ * Class Unit used to manage unit variables.
+ */
 public class Unit implements IUnit {
-    private String uc;
-    private String UN;
-    private float co2;
-    private float co1;
-    private float co4;
-    private float co3;
-    private float co5;
-    private int a1, a2, ex;
+    private String unitCode;
+    private String unitName;
+    private float cutOff1;
+    private float cutOff2;
+    private float cutOff3;
+    private float cutOff4;
+    private float cutOff5;
+    private int assignment1, assignment2, exam;
 
-    private StudentUnitRecordList rs;
+    /**
+     * import StudentUnitRecordList.
+     */
+    private StudentUnitRecordList studentUnitRecordList;
 
-    public Unit(String UC, String un, float f1, float f2, float f3, float f4,
-                float f5, int i1, int i2, int i3, StudentUnitRecordList rl) {
+    /**
+     * Constructor Unit used to set given parameters below.
+     * @param uc unitCode
+     * @param un unitName
+     * @param f1 cutOff2
+     * @param f2 cutOff1
+     * @param f3 cutOff4
+     * @param f4 cutOff3
+     * @param f5 cutOff5
+     * @param i1 assignment1
+     * @param i2 assignment2
+     * @param i3 assignment3
+     * @param rl studentUnitRecordList
+     */
 
-        uc = UC;
-        UN = un;
-        co2 = f1;
-        co1 = f2;
-        this.co4 = f3;
-        co3 = f4;
-        this.co5 = f5;
+    public Unit(final String uc, final String un, final float f1, final float f2, final float f3, final float f4,
+                final float f5, final int i1, final int i2, final int i3, final StudentUnitRecordList rl) {
+
+        unitCode = uc;
+        unitName = un;
+        cutOff2 = f1;
+        cutOff1 = f2;
+        this.cutOff4 = f3;
+        cutOff3 = f4;
+        this.cutOff5 = f5;
         this.setAssessmentWeights(i1, i2, i3);
-        rs = rl == null ? new StudentUnitRecordList() : rl;
+        if (rl == null) {
+           studentUnitRecordList = new StudentUnitRecordList();
+        }
+        studentUnitRecordList = rl;
     }
 
-    public String getUnitCode() {
-        return this.uc;
+    /**
+     * Getters & Setters
+     */
+    public final String getUnitCode() {
+        return this.unitCode;
     }
 
-    public String getUnitName() {
+    public final String getUnitName() {
 
-        return this.UN;
+        return this.unitName;
     }
 
-    public void setPsCutoff1(float cutoff) {
-        this.co2 = cutoff;
+    public final void setPsCutoff1(final float cutoff) {
+        this.cutOff2 = cutoff;
     }
 
-    public float getPsCutoff() {
-        return this.co2;
+    public final float getPsCutoff() {
+        return this.cutOff2;
     }
 
-    public void setCrCutoff(float cutoff) {
-        this.co1 = cutoff;
+    public final void setCrCutoff(final float cutoff) {
+        this.cutOff1 = cutoff;
     }
 
-    public float getCrCutoff() {
-        return this.co1;
+    public final float getCrCutoff() {
+        return this.cutOff1;
     }
 
-    public void setDiCutoff(float cutoff) {
-        this.co4 = cutoff;
+    public final void setDiCutoff(final float cutoff) {
+        this.cutOff4 = cutoff;
     }
 
-    public float getDiCutoff() {
-        return this.co4;
+    public final float getDiCutoff() {
+        return this.cutOff4;
     }
 
-    public void HDCutoff(float cutoff) {
-        this.co3 = cutoff;
+    public final void hdCutOff(final float cutoff) {
+        this.cutOff3 = cutoff;
     }
 
-    public void setHdCutoff(float cutoff) {
-        this.co3 = cutoff;
+    public final void setHdCutOff(final float cutoff) {
+        this.cutOff3 = cutoff;
     }
 
-    public float getHdCutoff() {
-        return this.co3;
-
+    public final float getHdCutoff() {
+        return this.cutOff3;
     }
 
-    public void setAeCutoff(float cutoff) {
-        this.co5 = cutoff;
+    public final void setAeCutoff(final float cutoff) {
+        this.cutOff5 = cutoff;
     }
 
-    public float getAeCutoff() {
-        return this.co5;
+    public final float getAeCutoff() {
+        return this.cutOff5;
     }
 
-    public void addStudentRecord(IStudentUnitRecord record) {
-        rs.add(record);
+    public final void addStudentRecord(final IStudentUnitRecord record) {
+        studentUnitRecordList.add(record);
     }
 
-    public IStudentUnitRecord getStudentRecord(int studentID) {
-        for (IStudentUnitRecord r : rs) {
-            if (r.getStudentID() == studentID)
+    public final IStudentUnitRecord getStudentRecord(final int studentID) {
+        for (IStudentUnitRecord r : studentUnitRecordList) {
+            if (r.getStudentID() == studentID) {
                 return r;
+            }
         }
         return null;
     }
 
-    public StudentUnitRecordList listStudentRecords() {
-        return rs;
+    public final StudentUnitRecordList listStudentRecords() {
+        return studentUnitRecordList;
+    }
+
+    /**
+     * Override from IUnit Interface.
+     */
+
+    @Override
+    public final int getAsg1Weight() {
+        return assignment1;
     }
 
     @Override
-    public int getAsg1Weight() {
-        return a1;
+    public final int getAsg2Weight() {
+        return assignment2;
     }
 
     @Override
-    public int getAsg2Weight() {
-        return a2;
+    public final int getExamWeight() {
+        return exam;
     }
 
     @Override
-    public int getExamWeight() {
-        return ex;
-    }
-
-    @Override
-    public void setAssessmentWeights(int a1, int a2, int ex) {
-        if (a1 < 0 || a1 > 100 ||
-                a2 < 0 || a2 > 100 ||
-                ex < 0 || ex > 100) {
+    public final void setAssessmentWeights(final int a1, final int a2, final int ex) {
+        if (a1 < 0 || a1 > 100
+                || a2 < 0 || a2 > 100
+                || ex < 0 || ex > 100) {
             throw new RuntimeException("Assessment weights cant be less than zero or greater than 100");
         }
         if (a1 + a2 + ex != 100) {
             throw new RuntimeException("Assessment weights must add to 100");
         }
-        this.a1 = a1;
-        this.a2 = a2;
-        this.ex = ex;
+        this.assignment1 = a1;
+        this.assignment2 = a2;
+        this.exam = ex;
     }
 
-    private void setCutoffs(float ps, float cr, float di, float hd, float ae) {
-        if (ps < 0 || ps > 100 ||
-                cr < 0 || cr > 100 ||
-                di < 0 || di > 100 ||
-                hd < 0 || hd > 100 ||
-                ae < 0 || ae > 100) {
+    /**
+     * Method setCutOffs that sets CutOffs(StudentGrade).
+     * @param ps pass
+     * @param cr credit
+     * @param di distinction
+     * @param hd high distinction
+     * @param ae additional exam
+     */
+    private void setCutoffs(final float ps, final float cr, final float di, final float hd, final float ae) {
+        if (ps < 0 || ps > 100
+                || cr < 0 || cr > 100
+                || di < 0 || di > 100
+                || hd < 0 || hd > 100
+                || ae < 0 || ae > 100) {
             throw new RuntimeException("Assessment cutoffs cant be less than zero or greater than 100");
         }
         if (ae >= ps) {
@@ -146,31 +185,36 @@ public class Unit implements IUnit {
         if (di >= hd) {
             throw new RuntimeException("DI cutoff must be less than HD cutoff");
         }
-
     }
 
-    public String getGrade(float f1, float f2, float f3) {
+    /**
+     * Method getGrade that returns String type of studentGrade.
+     * @param f1 assignment1 marks
+     * @param f2 assignment2 marks
+     * @param f3 exam marks
+     * @return String studentGrade
+     */
+    public final String getGrade(final float f1, final float f2, final float f3) {
         float t = f1 + f2 + f3;
 
-        if (f1 < 0 || f1 > a1 ||
-                f2 < 0 || f2 > a2 ||
-                f3 < 0 || f3 > ex) {
+        if (f1 < 0 || f1 > assignment1
+                || f2 < 0 || f2 > assignment2
+                || f3 < 0 || f3 > exam) {
             throw new RuntimeException("marks cannot be less than zero or greater than assessment weights");
         }
 
-        if (t < co5) {
+        if (t < cutOff5) {
             return "FL";
-        } else if (t < co2)
+        } else if (t < cutOff2) {
             return "AE";
-        else if (t < co1)
+        } else if (t < cutOff1) {
             return "PS";
-        else if (t < co4)
+        } else if (t < cutOff4) {
             return "CR";
-        else if (t < co3)
+        } else if (t < cutOff3) {
             return "DI";
-        else
+        } else {
             return "HD";
+        }
     }
-
-
 }

@@ -54,8 +54,8 @@ public class UnitProxy implements IUnit {
         return unitManager.getUnit(unitCode).getDiCutoff();
     }
 
-    public final void setHdCutoff(final float cutoff) {
-        unitManager.getUnit(unitCode).setHdCutoff(cutoff);
+    public final void setHdCutOff(final float cutoff) {
+        unitManager.getUnit(unitCode).setHdCutOff(cutoff);
     }
 
     public final float getHdCutoff() {

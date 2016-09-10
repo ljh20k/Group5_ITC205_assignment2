@@ -57,7 +57,7 @@ public interface IUnit {
      * set HdCutoff.
      * @param cutoff **HdCutoff**
      */
-    void setHdCutoff(float cutoff);
+    void setHdCutOff(float cutoff);
 
     /**
      * @return AeCutoff.
