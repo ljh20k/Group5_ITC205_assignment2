@@ -16,7 +16,7 @@ public class UnitProxy implements IUnit {
     public UnitProxy(final String uc, final String un) {
         this.unitCode = uc;
         this.unitName = un;
-        unitManager = UnitManager.UM();
+        unitManager = UnitManager.getUnitManager();
     }
 
     /**
