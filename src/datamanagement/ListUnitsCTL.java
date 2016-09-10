@@ -8,10 +8,10 @@ public class ListUnitsCTL {
      */
     private UnitManager um;
     /**
-     * UnitManager.UM() returns itself when not null.
+     * UnitManager.getUnitManager() returns itself when not null.
      */
     public ListUnitsCTL() {
-        um = UnitManager.UM();
+        um = UnitManager.getUnitManager();
     }
 
     /**
