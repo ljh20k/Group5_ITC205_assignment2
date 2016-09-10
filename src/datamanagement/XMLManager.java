@@ -12,23 +12,21 @@ import java.io.IOException;
 
 import org.jdom.JDOMException;
 
-public class XMLManager {
+/** Class XMLManager (Handler). */
+public final class XMLManager {
     private static XMLManager self = null;
-
-
     private Document doc;
 
     public static XMLManager getXML() {
-        if (self == null) self = new XMLManager();
+        if (self == null) {
+            self = new XMLManager();
+        }
         return self;
     }
 
     private XMLManager() {
         init();
-
-
     }
-
 
     public void init() {
         String s = AppProperties.getInstance().getProperties().getProperty("XMLFILE");
@@ -47,10 +45,16 @@ public class XMLManager {
         }
     }
 
+    /**
+     * @return Document saved document
+     */
     public Document getDocument() {
         return doc;
     }
 
+    /**
+     * saveDocument save current changes.
+     */
     public void saveDocument() {
         String xmlfile = AppProperties.getInstance().getProperties().getProperty("XMLFILE");
         try (FileWriter fout = new FileWriter(xmlfile)) {
