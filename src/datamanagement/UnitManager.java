@@ -1,15 +1,21 @@
 package datamanagement;
 
 import org.jdom.Element;
-
 import java.util.List;
 
+/**
+ * Class UnitManager that creates and get unit related.
+ */
 public final class UnitManager {
 
     private static UnitManager self = null;
 
     private UnitMap unitMap;
 
+    /**
+     * Method UnitManager that returns itself when not null.
+     * @return self UnitManager
+     */
     public static UnitManager getUnitManager() {
         if (self == null) {
             self = new UnitManager();
@@ -17,10 +23,19 @@ public final class UnitManager {
         return self;
     }
 
+    /**
+     * Constructor UnitManager that imports unitMap when this class run.
+     */
     private UnitManager() {
         unitMap = new UnitMap();
     }
 
+    /**
+     * Getter Method IUnit that getIUnit when exist .
+     * or creates IUnit when not exist.
+     * @param uc unitCode
+     * @return IUnit
+     */
     public IUnit getUnit(final String uc) {
         IUnit iu = unitMap.get(uc);
         if (iu != null) {
@@ -29,6 +44,11 @@ public final class UnitManager {
         return createUnit(uc);
     }
 
+    /**
+     * Method IUnit that creates IUnit.
+     * @param unitCode unitCode
+     * @return iu IUnit
+     */
     private IUnit createUnit(final String unitCode) {
 
         IUnit iu;
@@ -61,6 +81,10 @@ public final class UnitManager {
         throw new RuntimeException("DBMD: createUnit : unit not in file");
     }
 
+    /**
+     * getter method that returns UnitMap.
+     * @return um UnitMap
+     */
     public UnitMap getUnits() {
 
         UnitMap uM;
