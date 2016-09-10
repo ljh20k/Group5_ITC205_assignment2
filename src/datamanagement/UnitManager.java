@@ -1,37 +1,40 @@
 package datamanagement;
 
+import org.jdom.Element;
+
 import java.util.List;
 
-import org.jdom.*;
-
-public class UnitManager {
+public final class UnitManager {
 
     private static UnitManager self = null;
 
-    private UnitMap UM;
+    private UnitMap unitMap;
 
-    public static UnitManager UM() {
-        if (self == null)
+    public static UnitManager getUnitManager() {
+        if (self == null) {
             self = new UnitManager();
+        }
         return self;
     }
 
     private UnitManager() {
-        UM = new UnitMap();
+        unitMap = new UnitMap();
     }
 
-    public IUnit getUnit(String uc) {
-        IUnit iu = UM.get(uc);
-        return iu != null ? iu : createUnit(uc);
-
+    public IUnit getUnit(final String uc) {
+        IUnit iu = unitMap.get(uc);
+        if (iu != null) {
+            return iu;
+        }
+        return createUnit(uc);
     }
 
-    private IUnit createUnit(String unitCode) {
+    private IUnit createUnit(final String unitCode) {
 
         IUnit iu;
 
         for (Element el : (List<Element>) XMLManager.getXML().getDocument()
-                .getRootElement().getChild("unitTable").getChildren("unit"))
+                .getRootElement().getChild("unitTable").getChildren("unit")) {
             if (unitCode.equals(el.getAttributeValue("uid"))) {
                 StudentUnitRecordList slist;
 
@@ -51,10 +54,10 @@ public class UnitManager {
                         Integer.valueOf(el.getAttributeValue("examwgt"))
                                 .intValue(), StudentUnitRecordManager
                         .instance().getRecordsByUnit(unitCode));
-                UM.put(iu.getUnitCode(), iu);
+                unitMap.put(iu.getUnitCode(), iu);
                 return iu;
             }
-
+        }
         throw new RuntimeException("DBMD: createUnit : unit not in file");
     }
 
