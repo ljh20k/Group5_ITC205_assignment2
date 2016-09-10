@@ -3,12 +3,10 @@ package datamanagement;
 import org.jdom.Document;
 import org.jdom.input.SAXBuilder;
 
-import java.io.FileWriter;
+import java.io.*;
 
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-
-import java.io.IOException;
 
 import org.jdom.JDOMException;
 
@@ -57,12 +55,12 @@ public final class XMLManager {
      */
     public void saveDocument() {
         String xmlfile = AppProperties.getInstance().getProperties().getProperty("XMLFILE");
-        try (FileWriter fout = new FileWriter(xmlfile)) {
+        try (Writer fout = new OutputStreamWriter(new FileOutputStream(xmlfile), "UTF-8")) {
             XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
             outputter.output(doc, fout);
             fout.close();
         } catch (IOException ioe) {
-            System.err.printf("%s\n", "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlfile);
+            System.err.printf("%s%n", "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlfile);
             throw new RuntimeException("DBMD: XMLManager : saveDocument : error writing to file");
         }
     }
