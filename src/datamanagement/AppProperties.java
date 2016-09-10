@@ -1,6 +1,8 @@
 
 package datamanagement;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -27,15 +29,25 @@ public  final class AppProperties {
     }
 
     /**
-     * set up a memory for property for  reading property file.
+     * set up a memory for property for reading property file.
      */
     private AppProperties() {
         properties = new Properties();
+        FileInputStream input = null;
         try {
-            properties.load(new FileInputStream("Properties.prop"));
+            input = new FileInputStream("Properties.prop");
+            properties.load(input);
         } catch (IOException e) {
             //if any error occurs
             throw new RuntimeException("Could not read property file");
+        } finally {
+            try{
+                if (input != null) {
+                    input.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Could not close in stream");
+            }
         }
     }
 
