@@ -21,7 +21,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
     private Integer sid;
 
     /**
-     * @param cgCTL  CgCTL
+     * @param cgCTL CgCTL
      */
     public CgUI(final CgCTL cgCTL) {
         this.ctl = cgCTL;
@@ -67,7 +67,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
         jComboBox1.setModel(uM);
         jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public  void itemStateChanged(final java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(final java.awt.event.ItemEvent evt) {
                 jComboBox1ItemStateChanged(evt);
             }
         });
@@ -101,7 +101,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
         jComboBox2.setModel(rM);
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
-            public  void itemStateChanged(final java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(final java.awt.event.ItemEvent evt) {
                 jComboBox2ItemStateChanged(evt);
             }
         });
@@ -306,12 +306,11 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
     } // </editor-fold>//GEN-END:initComponents
 
     /**
-     *
      * @param evt asg1,asg2,exam
      */
     private void jComboBox1ItemStateChanged(final java.awt.event.ItemEvent evt) { // GEN-FIRST:event_jComboBox1ItemStateChanged
         String cU = (String) jComboBox1.getSelectedItem();
-        Refresh3();
+        refresh3();
         clearStudents();
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             if (cU.equals((String) jComboBox1.getItemAt(0))) {
@@ -322,27 +321,28 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
     } // GEN-LAST:event_jComboBox1ItemStateChanged
 
     /**
-     *
      * @param evt event
      */
-    private void jComboBox2ItemStateChanged(final java.awt.event.ItemEvent evt) { // GEN-FIRST:event_jComboBox2ItemStateChanged
-        Refresh3();
+    private void jComboBox2ItemStateChanged(final java.awt.event.ItemEvent evt) {
+        // GEN-FIRST:event_jComboBox2ItemStateChanged
+        refresh3();
         String cS = (String) jComboBox2.getSelectedItem();
         if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
             if (cS.equals((String) jComboBox2.getItemAt(0))) {
-                sid = new Integer(0);
+                sid = Integer.valueOf(0);
                 ctl.studentSelected(sid);
             } else {
-                sid = new Integer(cS.split("\\s")[0]);
+                sid = Integer.valueOf(cS.split("\\s")[0]);
             }
             ctl.studentSelected(sid);
         }
     } // GEN-LAST:event_jComboBox2ItemStateChanged
 
     /**
-     * @param evt   asg1,asg2,exam
+     * @param evt asg1,asg2,exam
      */
-    private void jButton3ActionPerformed(final java.awt.event.ActionEvent evt) { // GEN-FIRST:event_jButton3ActionPerformed
+    private void jButton3ActionPerformed(final java.awt.event.ActionEvent evt) {
+        // GEN-FIRST:event_jButton3ActionPerformed
         f1 = new Float(jTextField1.getText()).floatValue();
         f2 = new Float(jTextField2.getText()).floatValue();
         f3 = new Float(jTextField3.getText()).floatValue();
@@ -422,6 +422,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
     /**
      * implements the method of interface IStudentLister.
+     *
      * @param student **IStudent**
      */
     public final void addStudent(final IStudent student) {
@@ -431,6 +432,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
     /**
      * implement the set method for the boolean var1.
+     *
      * @param b boolean
      */
     public final void setState2(final boolean b) {
@@ -440,19 +442,20 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
     /**
      * set the record in IStudentUnitRecord.
+     *
      * @param record **IStudentUnitRecord**
      */
     public final void setRecord(final IStudentUnitRecord record) {
-        jTextField1.setText(new Float(record.getAsg1()).toString());
-        jTextField2.setText(new Float(record.getAsg2()).toString());
-        jTextField3.setText(new Float(record.getExam()).toString());
+        jTextField1.setText(Float.toString(record.getAsg1()));
+        jTextField2.setText(Float.toString(record.getAsg2()));
+        jTextField3.setText(Float.toString(record.getExam()));
         jLabel5.setText("");
     }
 
     /**
      * Refresh the ListUnit.
      */
-    public final void Refresh3() {
+    public final void refresh3() {
         jTextField1.setText("");
         jTextField2.setText("");
         jTextField3.setText("");
@@ -472,7 +475,8 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
     /**
      * implements the set and get method.
-     * @param b  boolean
+     *
+     * @param b boolean
      */
     public final void setState4(final boolean b) {
         jButton1.setEnabled(b);
@@ -481,6 +485,7 @@ public class CgUI extends javax.swing.JFrame implements IUnitLister,
 
     /**
      * set the edit for InputMethods
+     *
      * @param b boolean
      */
     public final void setState5(final boolean b) {
