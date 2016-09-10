@@ -39,7 +39,7 @@ public class CgCTL {
         cgUI.setState4(false);
         cgUI.setState5(false);
         cgUI.setState6(false);
-        cgUI.Refresh3();
+        cgUI.refresh3();
 
         ListUnitsCTL luCTL = new ListUnitsCTL();
         luCTL.listUnits(cgUI);
@@ -68,7 +68,7 @@ public class CgCTL {
     public final void studentSelected(final Integer id) {
         currentStudentID = id;
         if (currentStudentID.intValue() == 0) {
-            cgUI.Refresh3();
+            cgUI.refresh3();
             cgUI.setState3(false);
             cgUI.setState4(false);
             cgUI.setState5(false);
