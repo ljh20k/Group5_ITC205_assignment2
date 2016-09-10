@@ -22,7 +22,6 @@ public class UnitProxy implements IUnit {
     /**
      * getter & setter
      */
-
     public final String getUnitCode() {
         return this.unitCode;
     }
