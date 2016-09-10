@@ -4,9 +4,6 @@ package datamanagement;
  * Main Class.
  */
 public final class Main {
-    /**
-     * Constructor.
-     */
     private Main() {
     }
 
