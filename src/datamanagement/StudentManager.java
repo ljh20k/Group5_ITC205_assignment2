@@ -73,7 +73,7 @@ public final class StudentManager {
         Element el = getStudentElement(id);
         if (el != null) {
             StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(id);
-            is = new Student(new Integer(el.getAttributeValue("sid")), el.getAttributeValue("fname"), el.getAttributeValue("lname"), rlist);
+            is = new Student(Integer.valueOf(el.getAttributeValue("sid")), el.getAttributeValue("fname"), el.getAttributeValue("lname"), rlist);
             studentMap.put(is.getID(), is);
             return is;
         }
@@ -105,7 +105,7 @@ public final class StudentManager {
         IStudent is;
         StudentUnitRecordList ur = StudentUnitRecordManager.instance().getRecordsByUnit(uc);
         for (IStudentUnitRecord studentUnitRecord : ur) {
-            is = createStudentProxy(new Integer(studentUnitRecord.getStudentID()));
+            is = createStudentProxy(Integer.valueOf(studentUnitRecord.getStudentID()));
             sm.put(is.getID(), is);
         }
         um.put(uc, sm);
