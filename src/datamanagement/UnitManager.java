@@ -1,6 +1,7 @@
 package datamanagement;
 
 import org.jdom.Element;
+
 import java.util.List;
 
 /**
@@ -31,7 +32,7 @@ public final class UnitManager {
     }
 
     /**
-     * Getter Method IUnit that getIUnit when exist .
+     * Method IUnit that getIUnit when exist .
      * or creates IUnit when not exist.
      * @param uc unitCode
      * @return IUnit
@@ -64,15 +65,13 @@ public final class UnitManager {
                         el.getAttributeValue("ps")).floatValue(), Float
                         .valueOf(el.getAttributeValue("cr"))
                         .floatValue(), Float.valueOf(
-                        el.getAttributeValue("di")).floatValue(), Float
-                        .valueOf(el.getAttributeValue("hd"))
-                        .floatValue(), Float.valueOf(
-                        el.getAttributeValue("ae")).floatValue(),
-                        Integer.valueOf(el.getAttributeValue("asg1wgt"))
-                                .intValue(), Integer.valueOf(
-                        el.getAttributeValue("asg2wgt")).intValue(),
-                        Integer.valueOf(el.getAttributeValue("examwgt"))
-                                .intValue(), StudentUnitRecordManager
+                        el.getAttributeValue("di")).floatValue(),
+                        Float.valueOf(el.getAttributeValue("hd"))
+                        .floatValue(), Float.valueOf(el.getAttributeValue("ae")).floatValue(),
+                        Integer.parseInt(el.getAttributeValue("asg1wgt"))
+                        , Integer.parseInt(el.getAttributeValue("asg2wgt")),
+                        Integer.parseInt(el.getAttributeValue("examwgt")),
+                        StudentUnitRecordManager
                         .instance().getRecordsByUnit(unitCode));
                 unitMap.put(iu.getUnitCode(), iu);
                 return iu;
