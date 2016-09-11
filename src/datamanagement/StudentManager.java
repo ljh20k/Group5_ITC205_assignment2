@@ -105,7 +105,7 @@ public final class StudentManager {
         IStudent is;
         StudentUnitRecordList ur = StudentUnitRecordManager.instance().getRecordsByUnit(uc);
         for (IStudentUnitRecord studentUnitRecord : ur) {
-            is = createStudentProxy(Integer.valueOf(studentUnitRecord.getStudentID()));
+            is = createStudentProxy(studentUnitRecord.getStudentID());
             sm.put(is.getID(), is);
         }
         um.put(uc, sm);
