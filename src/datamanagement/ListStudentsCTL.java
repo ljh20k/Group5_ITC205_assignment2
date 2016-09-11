@@ -7,6 +7,8 @@
  */
 package datamanagement;
 
+import java.util.Map;
+
 /**
  * Class ListStudentsCTL.
  */
@@ -28,8 +30,8 @@ public class ListStudentsCTL {
     public final void listStudents(final IStudentLister lister, final String unitCode) {
         lister.clearStudents();
         StudentMap students = sm.getStudentsByUnit(unitCode);
-        for (Integer id : students.keySet()) {
-            lister.addStudent(students.get(id));
+        for (Map.Entry<Integer, IStudent> entry : students.entrySet()) {
+            lister.addStudent(entry.getValue());
         }
     }
 }
