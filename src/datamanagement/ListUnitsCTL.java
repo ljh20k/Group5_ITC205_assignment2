@@ -1,4 +1,7 @@
 package datamanagement;
+
+import java.util.Map;
+
 /**
  * Class ListUnitsCTL..
  */
@@ -20,8 +23,8 @@ public class ListUnitsCTL {
     public final void listUnits(final IUnitLister lister) {
         lister.clearUnits();
         UnitMap units = um.getUnits();
-        for (String s : units.keySet()) {
-            lister.addUnit(units.get(s));
+        for (Map.Entry<String,IUnit> entry :units.entrySet()) {
+            lister.addUnit(entry.getValue());
         }
     }
 }
