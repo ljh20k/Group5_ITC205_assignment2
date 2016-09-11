@@ -68,8 +68,8 @@ public final class UnitManager {
                         el.getAttributeValue("di")).floatValue(),
                         Float.valueOf(el.getAttributeValue("hd"))
                         .floatValue(), Float.valueOf(el.getAttributeValue("ae")).floatValue(),
-                        Integer.parseInt(el.getAttributeValue("asg1wgt"))
-                        , Integer.parseInt(el.getAttributeValue("asg2wgt")),
+                        Integer.parseInt(el.getAttributeValue("asg1wgt")),
+                        Integer.parseInt(el.getAttributeValue("asg2wgt")),
                         Integer.parseInt(el.getAttributeValue("examwgt")),
                         StudentUnitRecordManager
                         .instance().getRecordsByUnit(unitCode));
